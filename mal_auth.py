@@ -219,12 +219,6 @@ def api_get(
                 stop()
             if r.status_code != 401:
                 return r
-            # Final fallback: return 504 (do not re-authorize interactively here)
-            resp = requests.Response()
-            resp.status_code = 504
-            resp._content = b"Final retry failed after refresh; returning 504"
-            resp.url = url
-            return resp
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
             if attempt == retries - 1:
                 raise
