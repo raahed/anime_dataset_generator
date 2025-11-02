@@ -1,0 +1,19 @@
+[packages]
+requests = ">=2.25.0"
+python-dotenv = ">=1.0.0"
+tqdm = ">=4.66.0"
+
+[dev-packages]
+pytest = "*"
+black = "*"
+flake8 = "*"
+mypy = "*"
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+generate-anime = "python anime_dataset.py"
+generate-users = "python username_dataset.py"
+generate-details = "python user_details_dataset.py"
+generate-scores = "python user_score_dataset.py"

@@ -1,20 +1,73 @@
 # 🌟📊 Anime Dataset Generator 🎬📚
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white&color=blue)](https://www.python.org/)
 ![Requests](https://img.shields.io/badge/requests-2.27.1-green?style=for-the-badge&logoColor=white)
-![BeautifulSoup](https://img.shields.io/badge/beautifulsoup-4.11.2-white?style=for-the-badge&logoColor=white)
+[![MyAnimeList API](https://img.shields.io/badge/MyAnimeList-API-blue?style=for-the-badge&logo=myanimelist&logoColor=white)](https://myanimelist.net/apiconfig)
 [![Jikan](https://img.shields.io/badge/jikan-4.0.0-darkblue?style=for-the-badge&logoColor=white)](https://jikan.moe/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge&logoColor=white&color=blue,yellow)](https://opensource.org/licenses/MIT)
 
-This project aims to generate an anime dataset by utilizing the 🚀 [Jikan API (4.0.0)](https://docs.api.jikan.moe/). It retrieves information about anime such as title, score, genres, synopsis, producers, studios, and more. Additionally, it includes functionality to generate a list of usernames from MyAnimeList and fetch user details and anime scores for those usernames. By using these scripts together, you can generate a comprehensive anime dataset that includes information about both individual anime and user-specific scores and details. This dataset can be used for various purposes, such as analysis, recommendation systems, or building anime-related applications.
+This project generates comprehensive anime datasets using both the official 🔐 [MyAnimeList API](https://myanimelist.net/apiconfig) and the 🚀 [Jikan API (4.0.0)](https://docs.api.jikan.moe/). It retrieves information about anime such as title, score, genres, synopsis, producers, studios, and more. The project now includes **official MyAnimeList API integration** with OAuth2 authentication for secure and reliable data fetching, alongside functionality to generate user lists and fetch detailed user information.
+
+## 🆕 What's New - Official MyAnimeList API Integration
+
+The `user_score_dataset.py` script has been **completely rewritten** to use the official MyAnimeList API instead of web scraping:
+
+- ✅ **OAuth2 Authentication**: Secure authentication flow with automatic token refresh
+- ✅ **Rate Limiting**: Respects API rate limits automatically  
+- ✅ **Reliable Data Access**: Official API endpoints that won't break with website changes
+- ✅ **User Privacy Compliant**: Only accesses data with explicit user consent
+- ✅ **Better Error Handling**: Comprehensive error handling and retry logic
+
+📖 **[Read the complete API setup guide](MAL_API_GUIDE.md)** for detailed instructions.
 
 ## Prerequisites
 
-- 💻 Python 3.10 or higher
+- 💻 Python 3.7 or higher
 - 📦 requests library
-- 📦 csv library
-- 📦 re library
-- 📦 json library
-- 📦 BeautifulSoup library
+- 🔑 MyAnimeList API credentials (for user score fetching)
+- 📦 csv, json, re libraries (built-in)
+
+## 🚀 Quick Setup for MyAnimeList API
+
+1. **Install Pipenv**:
+   ```bash
+   pip install pipenv
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   pipenv install
+   ```
+
+3. **Get API Credentials**:
+   - Visit [MyAnimeList API Configuration](https://myanimelist.net/apiconfig)
+   - Create a new application
+   - Set redirect URI to: `http://localhost:8080/oauth`
+   - Note down your Client ID and Client Secret
+
+4. **Configure Credentials**:
+   ```bash
+   cp config.template.py config.py
+   # Edit config.py with your actual credentials
+   ```
+
+5. **Test Setup**:
+   ```bash
+   pipenv run test-setup
+   pipenv run test-oauth  # Interactive OAuth test
+   ```
+
+6. **Run the Script**:
+   ```bash
+   pipenv run generate-scores
+   ```
+
+### 🛠 Troubleshooting
+
+If you encounter OAuth authentication issues:
+
+- **Quick fix**: Run `pipenv run test-oauth` for step-by-step debugging
+- **Common issue**: "Authorization code expired" - Complete auth faster
+- **Detailed help**: See [OAuth Troubleshooting Guide](OAUTH_TROUBLESHOOTING.md)
 
 ## Usage
 
