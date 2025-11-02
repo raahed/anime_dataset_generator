@@ -189,7 +189,7 @@ def api_get(
     params: dict | None = None,
     timeout: int = 30,
     retries: int = 10,
-    backoff: float = 2.0,
+    backoff: float = 1.0,
 ) -> requests.Response:
     """GET wrapper that retries on timeouts and refreshes on 401 automatically.
 
@@ -232,7 +232,7 @@ def api_get(
             delay = min(delay * 2, 30)
 
 
-def _throttle(min_interval: float = 2.0) -> None:
+def _throttle(min_interval: float = 0.5) -> None:
     """Ensure at least `min_interval` seconds between outbound HTTP calls."""
     global _LAST_CALL
     now = time.monotonic()
