@@ -1,7 +1,6 @@
 import csv
 import re
 import requests
-import json
 
 output_file = 'anime_dataset.csv'
 
@@ -50,6 +49,9 @@ while anime_id <= end_id:
 
             # Fetching Genres of the anime
             anime['Genres'] = ', '.join([genre['name'] for genre in jsonData['data'].get('genres', [])])
+
+            # Fetching explicit_genres of the anime
+            anime['Explicit Genres'] = ', '.join([explicit_genre['name'] for explicit_genre in jsonData['data'].get('explicit_genres', [])])
             
             # Fetching Themes of the anime
             anime['Themes'] = ', '.join([theme['name'] for theme in jsonData['data'].get('themes', [])])
