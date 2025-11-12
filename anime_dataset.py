@@ -50,6 +50,12 @@ while anime_id <= end_id:
 
             # Fetching Genres of the anime
             anime['Genres'] = ', '.join([genre['name'] for genre in jsonData['data'].get('genres', [])])
+            
+            # Fetching Themes of the anime
+            anime['Themes'] = ', '.join([theme['name'] for theme in jsonData['data'].get('themes', [])])
+
+            # Fetching Demographics of the anime
+            anime['Demographics'] = ', '.join([demographic['name'] for demographic in jsonData['data'].get('demographics', [])])
 
             # Fetching and cleaning the Synopsis of the anime
             synopsis = jsonData['data'].get('synopsis')
